@@ -11,7 +11,7 @@ var client = require('twilio')(accountSid, authToken);
 client.messages.create({ 
     to: config.toPhone, 
     from: config.fromPhone, 
-    body: "Testing a message for Hult.", 
+    body: "Hi there! Welcome to TimeFund.", 
 }, function(err, message) { 
     console.log(message.sid); 
 });
