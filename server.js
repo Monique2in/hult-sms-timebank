@@ -8,6 +8,12 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cookieParser())
 
+// Declare variables to store user input
+var myName;
+var otherName;
+var workTask;
+var nHours;
+
 app.post('/sms', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
@@ -15,18 +21,32 @@ app.post('/sms', function(req, res) {
     var counter = parseInt(req.cookies.counter) || 0;
 
     if (counter == 0) {
-        twiml.message("Welcome to TimeFund.");
-    } else if (counter == 1) {
-    	twiml.message("Second message. What is the username?");
-    } else if (counter == 2) {
-    	twiml.message("Third message. Username is " + req.body.Body + " How many hours?");
-    } else if (counter == 3) {
-    	twiml.message("Fourth message. What task was performed?");
+        twiml.message("Welcome to TimeFund. What is your name?");
     } else if (req.body.Body == 'done') {
-    	counter = 0;
+    	counter = -1;
     	twiml.message("Number count restarted.");
+    } else if (counter == 1) {
+    	console.log(req.body.Body);
+        myName = req.body.Body;
+        console.log(myName);
+        twiml.message("Hello " + myName + ". What is the username of the person you helped?");
+    } else if (counter == 2) {   
+    	 console.log(req.body.Body);
+    	 otherName = req.body.Body;
+    	 console.log(otherName);
+    	 twiml.message("How many hours of work did you do for " + otherName + "?");
+    } else if (counter == 3) {
+    	console.log(req.body.Body);
+    	nHours = req.body.Body;
+    	console.log(nHours);
+    	twiml.message("You did " + nHours + " hours of work for " + otherName + ". What task did you do?");
+    } else if (counter == 4){
+    	console.log(req.body.Body);
+    	workTask = req.body.Body;
+    	console.log(workTask);
+    	twiml.message("You completed task: " + workTask);
     } else {
-        twiml.message("Hello, thanks for message number " + counter);
+        twiml.message("Placeholder. This is message " + counter);
     }
       counter = counter + 1;
     res.cookie('counter',counter);
