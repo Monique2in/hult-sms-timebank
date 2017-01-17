@@ -8,6 +8,10 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cookieParser())
 
+app.get('/', function (req, res) {
+  res.send('Up and running!')
+})
+
 app.post('/sms', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse(); //declare new Twilio response
