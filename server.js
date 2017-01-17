@@ -10,8 +10,8 @@ app.use(cookieParser())
 
 app.post('/sms', function(req, res) {
     var twilio = require('twilio');
-    var twiml = new twilio.TwimlResponse();
-    console.log(req.cookies.counter);
+    var twiml = new twilio.TwimlResponse(); //declare new Twilio response
+    console.log(req.cookies.counter); // Print current cookies to console as check
     console.log(req.cookies.myName);
     console.log(req.cookies.otherName);
     console.log(req.cookies.workTask);
@@ -59,7 +59,8 @@ app.post('/sms', function(req, res) {
         twiml.message("Welcome to TimeFund. Your most recent transaction was " + workTask + " for " + otherName + ". Type 'Clear' to start a new transaction.");
         console.log('most recent transaction displayed')
     }
-      counter = counter + 1;
+      counter = counter + 1; //Move to next interaction
+      // Assign values stored to cookies
     res.cookie('counter',counter);
     res.cookie('myName', myName);
     res.cookie('otherName', otherName);
