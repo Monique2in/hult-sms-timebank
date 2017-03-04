@@ -45,11 +45,11 @@ app.post('/sms', function(req, res) {
     } else if (counter == 3) {
     	nHours = req.body.Body;
     	console.log(nHours);
-    	twiml.message("You are requesting " + nHours + " of ShareCredits from  " + otherName + ". What did you provide? (Eg: Cooking, cleaning, translating)");
+    	twiml.message("You are requesting " + nHours + " ShareCredits from  " + otherName + ". What did you provide? (Eg: Cooking, cleaning, translating)");
     } else if (counter == 4){
     	workTask = req.body.Body;
     	console.log(workTask);
-    	twiml.message("You have requested " + nHours + " ShareCredits from " + otherName + "for" + workTask + ". Please respond YES to confirm.");
+    	twiml.message("You have requested " + nHours + " ShareCredits from " + otherName + " for " + workTask + ". Please respond YES to confirm.");
     } else if (counter == 5) {
     	if (req.body.Body.toLowerCase() == 'yes') {
     		console.log("Task confirmed. Done!");
