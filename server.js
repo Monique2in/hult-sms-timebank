@@ -28,7 +28,7 @@ app.post('/sms', function(req, res) {
     var nHours = parseInt(req.cookies.nHours);
 
     if (counter == 0) {
-        twiml.message("Welcome to TimeFund. To start a new transaction: What is your username?");
+        twiml.message("Welcome to ShareFund. Start a new transaction. What is your username?");
     } else if (req.body.Body == 'Clear') {
     	counter = -1;
     	twiml.message("Transaction cleared. Type anything to begin a new transaction.");
@@ -40,27 +40,27 @@ app.post('/sms', function(req, res) {
     } else if (counter == 2) {   
     	 otherName = req.body.Body;
     	 console.log(otherName);
-    	 twiml.message("How many hours of work did you do for " + otherName + "?");
+    	 twiml.message("How many ShareCredits does " + otherName + " owe you for your work?");
     } else if (counter == 3) {
     	nHours = req.body.Body;
     	console.log(nHours);
-    	twiml.message("You did " + nHours + " hours of work for " + otherName + ". What task did you do? Respond with one of these options: cooking, manual labour, childcare, teaching, admin.");
+    	twiml.message("You are requesting " + nHours + " of ShareCredits from  " + otherName + ". What did you provide? (Eg: Cooking, cleaning, translating)");
     } else if (counter == 4){
     	workTask = req.body.Body;
     	console.log(workTask);
-    	twiml.message("You have completed " + nHours + " hours of " + workTask + " for " + otherName + ". Please respond YES to confirm.");
+    	twiml.message("You have requested " + nHours + " ShareCredits from " + otherName + "for" + workTask + ". Please respond YES to confirm.");
     } else if (counter == 5) {
-    	if (req.body.Body == 'YES' || 'yes' || "Yes") {
+    	if (req.body.Body.toLowerCase() == 'yes') {
     		console.log("Task confirmed. Done!");
-    		twiml.message("Transaction confirmed. An SMS has been sent to " + otherName + " to verify. Thank you!");
+    		twiml.message("Transaction confirmed. An SMS has been sent to " + otherName + " to verify. Once verified, you will receive" + nHours + " ShareCredits. Thank you!");
     	}
     	else {
     		console.log("Task not confirmed.");
-    		twiml.message("You did not confirm the task. Please start over.");
+    		twiml.message("You did not confirm the task. Please re-input task details.");
     		counter = -1;
     	}
     } else {
-        twiml.message("Welcome to TimeFund. Your most recent transaction was " + workTask + " for " + otherName + ". Type 'Clear' to start a new transaction.");
+        twiml.message("Welcome to ShareFund. Your most recent transaction was " + workTask + " for " + otherName + ". Type 'Clear' to start a new transaction.");
         console.log('most recent transaction displayed')
     }
       counter = counter + 1; //Move to next interaction
@@ -75,4 +75,6 @@ app.post('/sms', function(req, res) {
 });
 
 
-http.createServer(app).listen(1337, "0.0.0.0");
+http.createServer(app).listen(1337, function () {
+    console.log("Express server listening on port 1337");
+});

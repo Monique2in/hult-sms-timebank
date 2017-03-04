@@ -1,0 +1,27 @@
+{
+  "name": "hult-sms-timebank",
+  "version": "1.0.0",
+  "description": "Implementing SMS-facilitated Timebank for refugees as part of our Hult Prize submission",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monique2in/hult-sms-timebank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Monique2in/hult-sms-timebank/issues"
+  },
+  "homepage": "https://github.com/Monique2in/hult-sms-timebank#readme",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.0",
+    "http": "0.0.0",
+    "twilio": "^2.11.1"
+  }
+}
