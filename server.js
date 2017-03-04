@@ -7,6 +7,7 @@ var http = require('http'),
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cookieParser())
+var port = process.env.PORT || 1337;
 
 app.get('/', function (req, res) {
   res.send('Up and running!')
@@ -75,6 +76,6 @@ app.post('/sms', function(req, res) {
 });
 
 
-http.createServer(app).listen(1337, function () {
+http.createServer(app).listen(port, function () {
     console.log("Express server listening on port 1337");
 });
