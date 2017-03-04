@@ -77,5 +77,5 @@ app.post('/sms', function(req, res) {
 
 
 http.createServer(app).listen(port, function () {
-    console.log("Express server listening on port 1337");
+    console.log("Express server listening on port" + port);
 });
