@@ -10,7 +10,7 @@ app.use(cookieParser())
 var port = process.env.PORT || 1337;
 
 app.get('/', function (req, res) {
-  res.send('Up and running!')
+  res.send('Version 2 Success, app running')
 })
 
 app.post('/sms', function(req, res) {
